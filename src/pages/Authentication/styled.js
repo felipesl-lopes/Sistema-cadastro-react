@@ -45,27 +45,6 @@ export const Title = styled.h1`
   color: #181c2e;
 `;
 
-export const Input = styled.input`
-  margin-bottom: 1rem;
-  height: 36px;
-  border-radius: 4px;
-  border: 0;
-  padding: 10px;
-  font-size: 15px;
-  background-color: #fff;
-`;
-
-export const Button = styled.button`
-  margin-top: 1rem;
-  height: 36px;
-  border-radius: 4px;
-  border: 0;
-  padding: 10px;
-  font-size: 15px;
-  background-color: #181c2e;
-  color: #fff;
-`;
-
 export const ButtonLink = styled(Link)`
   margin: 1rem 0;
   color: #000;

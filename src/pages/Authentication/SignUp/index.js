@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ButtonAuth } from "../../../components/ButtonAuth";
+import { InputAuth } from "../../../components/InputAuth";
+import { AuthContext } from "../../../contexts/auth";
 import {
-  Button,
   ButtonLink,
   Container,
   Form,
-  Input,
   Login,
   LoginArea,
   Logo,
@@ -15,6 +16,14 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+
+  const { signUp } = useContext(AuthContext);
+
+  const handleSubmit = async () => {
+    if (name !== "" && email !== "" && password !== "") {
+      await signUp(name, email, password);
+    }
+  };
 
   return (
     <Container>
@@ -29,37 +38,38 @@ export const SignUp = () => {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
+            handleSubmit();
           }}
         >
           <Title>Criar conta</Title>
 
-          <Input
+          <InputAuth
             autoCapitalize="words"
             placeholder="Nome completo"
             value={name}
             type="text"
-            onChange={(e) => setName(e.target.value)}
+            onChange={setName}
           />
 
-          <Input
+          <InputAuth
             autoCapitalize="none"
             placeholder="E-mail"
             value={email}
             type="email"
             id="email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={setEmail}
           />
 
-          <Input
+          <InputAuth
             autoCapitalize="none"
             placeholder="Senha"
             value={password}
             type="password"
             autoComplete="false"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={setPassword}
           />
 
-          <Button type="submit">Cadastrar</Button>
+          <ButtonAuth title={"Cadastrar"} />
         </Form>
 
         <ButtonLink to={"/"}>Já possui uma conta? Faça o login</ButtonLink>

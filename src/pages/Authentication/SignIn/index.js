@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ButtonAuth } from "../../../components/ButtonAuth";
+import { InputAuth } from "../../../components/InputAuth";
+import { AuthContext } from "../../../contexts/auth";
 import {
-  Button,
   ButtonLink,
   Container,
   Form,
-  Input,
   Login,
   LoginArea,
   Logo,
@@ -14,6 +15,14 @@ import {
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { signIn } = useContext(AuthContext);
+
+  const handleSubmit = async () => {
+    if (email !== "" && password !== "") {
+      await signIn(email, password);
+    }
+  };
 
   return (
     <Container>
@@ -28,29 +37,30 @@ export const SignIn = () => {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
+            handleSubmit();
           }}
         >
           <Title>Entrar</Title>
 
-          <Input
+          <InputAuth
+            onChange={setEmail}
+            value={email}
             autoCapitalize="none"
             placeholder="E-mail"
-            value={email}
             type="email"
             id="email"
-            onChange={(e) => setEmail(e.target.value)}
           />
 
-          <Input
+          <InputAuth
             autoCapitalize="none"
             placeholder="Senha"
             value={password}
             type="password"
             autoComplete="false"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={setPassword}
           />
 
-          <Button type="submit">Acessar</Button>
+          <ButtonAuth title={"Acessar"} />
         </Form>
 
         <ButtonLink to={"/register"}>Criar uma conta</ButtonLink>
