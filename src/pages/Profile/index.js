@@ -11,10 +11,9 @@ import { ComponentTitle } from "../../components/ComponentTitle";
 import { InputAuth } from "../../components/InputAuth";
 import { AuthContext } from "../../contexts/auth";
 import { db, storage } from "../../services/firebaseConnection";
+import { GlobalContainer, GlobalForm } from "../../styles/globalStyles";
 import {
   Container,
-  DivContainer,
-  FormProfile,
   ImgProfile,
   InputImg,
   LabelAvatar,
@@ -104,13 +103,13 @@ export const Profile = () => {
     <Container>
       <ComponentHeader />
 
-      <DivContainer>
+      <GlobalContainer>
         <ComponentTitle title="Meu perfil">
           <FiSettings size={20} />
         </ComponentTitle>
 
         <ProfileContainer>
-          <FormProfile
+          <GlobalForm
             onSubmit={(e) => {
               e.preventDefault();
               handleSubmit();
@@ -144,13 +143,13 @@ export const Profile = () => {
             />
 
             <ButtonAuth title={"Salvar"} />
-          </FormProfile>
+          </GlobalForm>
         </ProfileContainer>
 
         <ProfileContainer>
           <LogoutButton onClick={async () => logout()}>Sair</LogoutButton>
         </ProfileContainer>
-      </DivContainer>
+      </GlobalContainer>
     </Container>
   );
 };

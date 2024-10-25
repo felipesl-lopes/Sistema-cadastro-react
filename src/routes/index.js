@@ -3,6 +3,7 @@ import { SignIn } from "../pages/Authentication/SignIn";
 import { SignUp } from "../pages/Authentication/SignUp";
 import { Customers } from "../pages/Customers";
 import { Dashboard } from "../pages/Dashboard";
+import { New } from "../pages/New";
 import { Profile } from "../pages/Profile";
 import { Private } from "./Private";
 
@@ -25,7 +26,6 @@ export const RoutesApp = () => {
         path="/profile"
         element={
           <Private>
-            {" "}
             <Profile />
           </Private>
         }
@@ -35,8 +35,25 @@ export const RoutesApp = () => {
         path="/customers"
         element={
           <Private>
-            {" "}
             <Customers />
+          </Private>
+        }
+      />
+
+      <Route
+        path="/new"
+        element={
+          <Private>
+            <New />
+          </Private>
+        }
+      />
+
+      <Route
+        path="/new/:id"
+        element={
+          <Private>
+            <New />
           </Private>
         }
       />

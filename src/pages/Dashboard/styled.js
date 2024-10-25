@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { FiPlus } from "react-icons/fi";
 
 export const Container = styled.div`
   background-color: red;
@@ -16,6 +15,18 @@ export const ButtonNew = styled(Link)`
   padding: 0.5em;
   color: white;
   justify-content: center;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  svg {
+    color: white;
+    font-size: 17px;
+    margin-right: 2px;
+  }
 `;
 
 export const Table = styled.table`
@@ -26,7 +37,7 @@ export const Table = styled.table`
   table-layout: fixed;
   border-collapse: collapse;
 
-  table caption {
+  caption {
     font-size: 1.5em;
     margin: 0.5em 0 0.75em;
   }
@@ -59,27 +70,57 @@ export const Table = styled.table`
   td .action svg {
     vertical-align: middle;
   }
+
+  @media screen and (max-width: 500px) {
+    border: 0;
+
+    caption {
+      font-size: 1.3em;
+    }
+
+    thead {
+      border: none;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    tr {
+      border-bottom: 4px solid #ddd;
+      display: block;
+      margin-bottom: 0.6em;
+    }
+
+    td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: 0.8em;
+      text-align: right;
+    }
+
+    td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
 `;
 
-export const ActionButton = styled.button`
+export const ActionButton = styled(Link)`
   border: 0;
   padding: 4px;
   border-radius: 4px;
   margin: 4px;
-
-  @media screen and (max-width: 720px) {
-    display: flex;
-  }
+  display: inline-block;
 
   svg {
-    align-items: center;
-    justify-content: center;
+    display: flex;
     color: white;
   }
-`;
-
-export const IconAdd = styled(FiPlus)`
-  color: white;
 `;
 
 export const Status = styled.span`
@@ -90,5 +131,33 @@ export const Status = styled.span`
 
   @media screen and (max-width: 740px) {
     font-size: 13px;
+  }
+`;
+
+export const NotCalled = styled.p`
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  padding: 40px 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+`;
+
+export const ButtonMore = styled.button`
+  background-color: #fff;
+  font-size: 0.9em;
+  border-radius: 4px;
+  border-width: 1px;
+  padding: 2px 4px;
+  margin-top: 16px;
+  display: flex;
+  margin-left: auto;
+  margin-right: 4px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+
+  &:active {
+    transform: translate(1px, 1px);
   }
 `;

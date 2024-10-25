@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div``;
 
-export const DivContainer = styled.div`
+export const GlobalContainer = styled.div`
   margin-left: 200px;
   padding: 1px 16px;
 
@@ -20,7 +20,7 @@ export const ProfileContainer = styled.div`
   margin-bottom: 1em;
 `;
 
-export const FormProfile = styled.form`
+export const GlobalForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -60,7 +60,7 @@ export const ImgProfile = styled.img`
 
 export const LabelInput = styled.label`
   font-size: 1em;
-  margin-bottom: 0.3em;
+  margin-bottom: 0.5em;
 `;
 
 export const InputForm = styled.input`

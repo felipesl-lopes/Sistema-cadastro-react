@@ -10,10 +10,10 @@ import { AuthContext } from "../../contexts/auth";
 import { db } from "../../services/firebaseConnection";
 import {
   Container,
-  DivContainer,
-  FormProfile,
+  GlobalContainer,
+  GlobalForm,
   LabelInput,
-  ProfileContainer,
+  ProfileContainer
 } from "../../styles/globalStyles";
 
 export const Customers = () => {
@@ -51,13 +51,13 @@ export const Customers = () => {
     <Container>
       <ComponentHeader />
 
-      <DivContainer>
+      <GlobalContainer>
         <ComponentTitle title="Clientes">
           <FiUser size={20} />
         </ComponentTitle>
 
         <ProfileContainer>
-          <FormProfile
+          <GlobalForm
             onSubmit={(e) => {
               e.preventDefault();
               handleRegister();
@@ -67,27 +67,27 @@ export const Customers = () => {
             <InputAuth
               value={name}
               onChange={setName}
-              placeHolder="Nome da empresa"
+              placeholder="Nome da empresa"
             />
 
             <LabelInput>CNPJ</LabelInput>
             <InputAuth
               value={cnpj}
               onChange={setCnpj}
-              placeHolder="CNPJ da empresa"
+              placeholder="CNPJ da empresa"
             />
 
             <LabelInput>Endereço</LabelInput>
             <InputAuth
               value={address}
               onChange={setAddress}
-              placeHolder="Endereço da empresa"
+              placeholder="Endereço da empresa"
             />
 
             <ButtonAuth title="Cadastrar" />
-          </FormProfile>
+          </GlobalForm>
         </ProfileContainer>
-      </DivContainer>
+      </GlobalContainer>
     </Container>
   );
 };
