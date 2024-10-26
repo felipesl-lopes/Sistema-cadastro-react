@@ -18,13 +18,12 @@ import {
   InputImg,
   LabelAvatar,
   LabelInput,
-  LogoutButton,
   ProfileContainer,
   Span,
 } from "./styled";
 
 export const Profile = () => {
-  const { user, logout, storageUser, setUser, setLoadingAuth } =
+  const { user, storageUser, setUser, setLoadingAuth } =
     useContext(AuthContext);
   const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
   const [imageAvatar, setImageAvatar] = useState(null);
@@ -144,10 +143,6 @@ export const Profile = () => {
 
             <ButtonAuth title={"Salvar"} />
           </GlobalForm>
-        </ProfileContainer>
-
-        <ProfileContainer>
-          <LogoutButton onClick={async () => logout()}>Sair</LogoutButton>
         </ProfileContainer>
       </GlobalContainer>
     </Container>

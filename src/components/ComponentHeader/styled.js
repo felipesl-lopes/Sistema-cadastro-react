@@ -52,6 +52,7 @@ export const Linki = styled(Link)`
   flex-direction: row;
   align-items: center;
   transition: ease-in-out 0.4s;
+  font-size: 1em;
 
   &:hover {
     background-color: #121212;
@@ -76,6 +77,45 @@ export const Icon = styled.div`
 
     @media screen and (max-width: 700px) {
       display: none;
+    }
+  }
+`;
+
+export const ButtonLogout = styled.button`
+  display: block;
+  padding: 16px;
+  display: flex;
+  text-decoration: none;
+  color: rgba(235, 255, 255, 0.7);
+  flex-direction: row;
+  align-items: center;
+  transition: ease-in-out 0.4s;
+  border: 0;
+  background-color: transparent;
+  width: 100%;
+  font-size: 1em;
+
+  &:hover {
+    background-color: #121212;
+    color: #fff;
+  }
+
+  @media screen and (max-width: 700px) {
+    float: left;
+    width: auto;
+  }
+
+  @media screen and (max-width: 400px) {
+    text-align: center;
+    float: none;
+    width: 100%;
+  }
+
+  svg {
+    color: white;
+
+    @media screen and (max-width: 700px) {
+      display: flex;
     }
   }
 `;

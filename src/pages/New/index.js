@@ -6,8 +6,9 @@ import {
   getDocs,
   updateDoc,
 } from "firebase/firestore";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { FiPlusCircle } from "react-icons/fi";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ButtonAuth } from "../../components/ButtonAuth";
 import { ComponentHeader } from "../../components/ComponentHeader";
@@ -16,12 +17,18 @@ import { AuthContext } from "../../contexts/auth";
 import { db } from "../../services/firebaseConnection";
 import {
   GlobalContainer,
+  GlobalContent,
   GlobalForm,
-  LabelInput,
-  ProfileContainer,
+  GlobalLabel,
 } from "../../styles/globalStyles";
-import { Container, InputLoading, Select, Status, TextArea } from "./styled";
-import { useParams, useNavigate } from "react-router-dom";
+import {
+  Container,
+  InputLoading,
+  Loading,
+  Select,
+  Status,
+  TextArea,
+} from "./styled";
 
 export const New = () => {
   const { user, setLoadingAuth } = useContext(AuthContext);
@@ -34,6 +41,32 @@ export const New = () => {
   const [complement, setComplement] = useState("");
   const [subject, setSubject] = useState("Suporte");
   const [status, setStatus] = useState("Em aberto");
+  const [loadingData, setLoadingData] = useState(id ? true : false);
+
+  const loadId = useCallback(
+    async (list) => {
+      setLoadingData(true);
+      const docRef = doc(db, "called", id);
+      await getDoc(docRef)
+        .then(async (doc) => {
+          setComplement(await doc.data().complement);
+          setStatus(await doc.data().status);
+          setSubject(await doc.data().subject);
+
+          let index = list.findIndex(
+            (item) => item.id === doc.data().customerId
+          );
+          setCustomerSelected(index);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setLoadingData(false);
+        });
+    },
+    [id]
+  );
 
   useEffect(() => {
     (async () => {
@@ -65,23 +98,7 @@ export const New = () => {
           setLoading(false);
         });
     })();
-  }, [id]);
-
-  const loadId = async (list) => {
-    const docRef = doc(db, "called", id);
-    await getDoc(docRef)
-      .then(async (doc) => {
-        setComplement(await doc.data().complement);
-        setStatus(await doc.data().status);
-        setSubject(await doc.data().subject);
-
-        let index = list.findIndex((item) => item.id === doc.data().customerId);
-        setCustomerSelected(index);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  }, [id, loadId]);
 
   const handleOptionChange = (e) => {
     setStatus(e.target.value);
@@ -148,77 +165,88 @@ export const New = () => {
           <FiPlusCircle size={20} />
         </ComponentTitle>
 
-        <ProfileContainer>
-          <GlobalForm
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleRegisterCalled();
-            }}
-          >
-            <LabelInput>Clientes</LabelInput>
-            {loading ? (
-              <InputLoading type="text" disabled={true} value="Carregando..." />
-            ) : (
-              <Select value={customerSelected} onChange={handleCustomerChange}>
-                {customers.map((item, index) => (
-                  <option key={index} value={index}>
-                    {item.fantasyName}
-                  </option>
-                ))}
-              </Select>
-            )}
-
-            <LabelInput>Assunto</LabelInput>
-            <Select
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
+        <GlobalContent>
+          {loadingData ? (
+            <Loading>Carregando...</Loading>
+          ) : (
+            <GlobalForm
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleRegisterCalled();
+              }}
             >
-              <option value="Suporte">Suporte</option>
-              <option value="Visita técnica">Visita técnica</option>
-              <option value="Financeiro">Financeiro</option>
-            </Select>
+              <GlobalLabel>Clientes</GlobalLabel>
+              {loading ? (
+                <InputLoading
+                  type="text"
+                  disabled={true}
+                  value="Carregando..."
+                />
+              ) : (
+                <Select
+                  value={customerSelected}
+                  onChange={handleCustomerChange}
+                >
+                  {customers.map((item, index) => (
+                    <option key={index} value={index}>
+                      {item.fantasyName}
+                    </option>
+                  ))}
+                </Select>
+              )}
 
-            <LabelInput>Status</LabelInput>
-            <Status>
-              <input
-                type="radio"
-                name="radio"
-                value="Em aberto"
-                onChange={handleOptionChange}
-                checked={status === "Em aberto"}
+              <GlobalLabel>Assunto</GlobalLabel>
+              <Select
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+              >
+                <option value="Suporte">Suporte</option>
+                <option value="Visita técnica">Visita técnica</option>
+                <option value="Financeiro">Financeiro</option>
+              </Select>
+
+              <GlobalLabel>Status</GlobalLabel>
+              <Status>
+                <input
+                  type="radio"
+                  name="radio"
+                  value="Em aberto"
+                  onChange={handleOptionChange}
+                  checked={status === "Em aberto"}
+                />
+                <span>Em aberto</span>
+
+                <input
+                  type="radio"
+                  name="radio"
+                  value="Progresso"
+                  onChange={handleOptionChange}
+                  checked={status === "Progresso"}
+                />
+                <span>Progresso</span>
+
+                <input
+                  type="radio"
+                  name="radio"
+                  value="Atendido"
+                  onChange={handleOptionChange}
+                  checked={status === "Atendido"}
+                />
+                <span>Atendido</span>
+              </Status>
+
+              <GlobalLabel>Complemento</GlobalLabel>
+              <TextArea
+                type="text"
+                placeholder="Descreva o problema (opcional)."
+                value={complement}
+                onChange={(e) => setComplement(e.target.value)}
               />
-              <span>Em aberto</span>
 
-              <input
-                type="radio"
-                name="radio"
-                value="Progresso"
-                onChange={handleOptionChange}
-                checked={status === "Progresso"}
-              />
-              <span>Progresso</span>
-
-              <input
-                type="radio"
-                name="radio"
-                value="Atendido"
-                onChange={handleOptionChange}
-                checked={status === "Atendido"}
-              />
-              <span>Atendido</span>
-            </Status>
-
-            <LabelInput>Complemento</LabelInput>
-            <TextArea
-              type="text"
-              placeholder="Descreva o problema (opcional)."
-              value={complement}
-              onChange={(e) => setComplement(e.target.value)}
-            />
-
-            <ButtonAuth title={id ? "Atualizar" : "Registrar"} />
-          </GlobalForm>
-        </ProfileContainer>
+              <ButtonAuth title={id ? "Atualizar" : "Registrar"} />
+            </GlobalForm>
+          )}
+        </GlobalContent>
       </GlobalContainer>
     </Container>
   );

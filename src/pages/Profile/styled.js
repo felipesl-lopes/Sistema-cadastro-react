@@ -75,11 +75,3 @@ export const InputForm = styled.input`
     cursor: not-allowed;
   }
 `;
-
-export const LogoutButton = styled.button`
-  border: 1px solid #121212;
-  background-color: transparent;
-  border-radius: 4px;
-  font-size: 15px;
-  padding: 4px 10px;
-`;

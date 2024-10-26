@@ -53,3 +53,14 @@ export const InputLoading = styled.input`
   background-color: #fff;
   max-width: 600px;
 `;
+
+export const Loading = styled.p`
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  padding: 40px 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+`;

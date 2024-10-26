@@ -125,9 +125,9 @@ export const ActionButton = styled(Link)`
 
 export const Status = styled.span`
   background-color: green;
-  padding: 4px;
+  padding: 2px 4px;
   color: white;
-  border-radius: 4px;
+  border-radius: 3px;
 
   @media screen and (max-width: 740px) {
     font-size: 13px;

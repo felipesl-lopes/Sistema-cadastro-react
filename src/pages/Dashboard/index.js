@@ -22,6 +22,7 @@ import {
   Status,
   Table,
 } from "./styled";
+import { ComponentModal } from "../../components/ComponentModal";
 
 export const Dashboard = () => {
   const [called, setCalled] = useState([]);
@@ -29,6 +30,8 @@ export const Dashboard = () => {
   const [lastDocs, setLastDocs] = useState(null);
   const [isEmpty, setIsEmpty] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [detailCalled, setDetailCalled] = useState([]);
   const docRef = collection(db, "called");
 
   useEffect(() => {
@@ -93,6 +96,11 @@ export const Dashboard = () => {
     }
   };
 
+  const handleModal = (item) => {
+    setOpenModal(!openModal);
+    setDetailCalled(item);
+  };
+
   return (
     <Container>
       <ComponentHeader />
@@ -146,7 +154,7 @@ export const Dashboard = () => {
                         </td>
                         <td data-label=" ">
                           <ActionButton
-                            to={""}
+                            onClick={() => handleModal(item)}
                             style={{ backgroundColor: "#3583f6" }}
                           >
                             <FiSearch />
@@ -173,6 +181,11 @@ export const Dashboard = () => {
 
         <br />
       </GlobalContainer>
+      <ComponentModal
+        isOpen={openModal}
+        handleModal={handleModal}
+        detailCalled={detailCalled}
+      />
     </Container>
   );
 };

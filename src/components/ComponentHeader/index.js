@@ -1,11 +1,25 @@
-import React from "react";
-import { Container, ContainerPhoto, Icon, Linki, Photo } from "./styled";
-import { useContext } from "react";
+import React, { useContext } from "react";
+import { FiHome, FiLogOut, FiSettings, FiUser } from "react-icons/fi";
 import { AuthContext } from "../../contexts/auth";
-import { FiHome, FiSettings, FiUser } from "react-icons/fi";
+import {
+  ButtonLogout,
+  Container,
+  ContainerPhoto,
+  Icon,
+  Linki,
+  Photo,
+} from "./styled";
 
 export const ComponentHeader = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
+
+  const handleLogout = async () => {
+    const confirm = window.confirm("Você deseja realmente sair?");
+
+    if (confirm) {
+      await logout();
+    }
+  };
 
   return (
     <Container>
@@ -37,6 +51,13 @@ export const ComponentHeader = () => {
         </Icon>
         Perfil
       </Linki>
+
+      <ButtonLogout onClick={handleLogout}>
+        <Icon>
+          <FiLogOut size={22} />
+        </Icon>
+        Sair
+      </ButtonLogout>
     </Container>
   );
 };

@@ -11,9 +11,9 @@ import { db } from "../../services/firebaseConnection";
 import {
   Container,
   GlobalContainer,
+  GlobalContent,
   GlobalForm,
-  LabelInput,
-  ProfileContainer
+  GlobalLabel,
 } from "../../styles/globalStyles";
 
 export const Customers = () => {
@@ -56,28 +56,28 @@ export const Customers = () => {
           <FiUser size={20} />
         </ComponentTitle>
 
-        <ProfileContainer>
+        <GlobalContent>
           <GlobalForm
             onSubmit={(e) => {
               e.preventDefault();
               handleRegister();
             }}
           >
-            <LabelInput>Nome fantasia</LabelInput>
+            <GlobalLabel>Nome fantasia</GlobalLabel>
             <InputAuth
               value={name}
               onChange={setName}
               placeholder="Nome da empresa"
             />
 
-            <LabelInput>CNPJ</LabelInput>
+            <GlobalLabel>CNPJ</GlobalLabel>
             <InputAuth
               value={cnpj}
               onChange={setCnpj}
               placeholder="CNPJ da empresa"
             />
 
-            <LabelInput>Endereço</LabelInput>
+            <GlobalLabel>Endereço</GlobalLabel>
             <InputAuth
               value={address}
               onChange={setAddress}
@@ -86,7 +86,7 @@ export const Customers = () => {
 
             <ButtonAuth title="Cadastrar" />
           </GlobalForm>
-        </ProfileContainer>
+        </GlobalContent>
       </GlobalContainer>
     </Container>
   );
