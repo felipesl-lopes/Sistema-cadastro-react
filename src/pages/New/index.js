@@ -10,7 +10,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { FiPlusCircle } from "react-icons/fi";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ButtonAuth } from "../../components/ButtonAuth";
+import ButtonAuth from "../../components/ButtonAuth";
 import { ComponentHeader } from "../../components/ComponentHeader";
 import { ComponentTitle } from "../../components/ComponentTitle";
 import { AuthContext } from "../../contexts/auth";
@@ -40,7 +40,7 @@ export const New = () => {
   const [loading, setLoading] = useState(true);
   const [complement, setComplement] = useState("");
   const [subject, setSubject] = useState("Suporte");
-  const [status, setStatus] = useState("Em aberto");
+  const [status, setStatus] = useState("");
   const [loadingData, setLoadingData] = useState(id ? true : false);
 
   const loadId = useCallback(
@@ -110,6 +110,9 @@ export const New = () => {
 
   const handleRegisterCalled = async () => {
     // Se tiver id, o botão irá atualizar o chamado
+    if (status === "") {
+      return toast.error("Selecione o status do chamado.");
+    }
     if (id) {
       const docRef = doc(db, "called", id);
       await updateDoc(docRef, {

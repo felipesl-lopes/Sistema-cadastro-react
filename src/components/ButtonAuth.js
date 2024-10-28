@@ -3,11 +3,21 @@ import styled from "styled-components";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/auth";
 
-export const ButtonAuth = ({ title, ...children }) => {
+const ButtonAuth = ({ title, disable, ...children }) => {
   const { loadingAuth } = useContext(AuthContext);
 
   return (
-    <Button type="submit" {...children}>
+    <Button
+      style={{
+        backgroundColor: disable && "#aaa",
+        cursor: disable && "default",
+        transform: disable && "none",
+        boxShadow: disable && "initial",
+      }}
+      disabled={disable}
+      type="submit"
+      {...children}
+    >
       {loadingAuth ? "Carregando..." : title}
     </Button>
   );
@@ -26,6 +36,9 @@ const Button = styled.button`
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 
   &:active {
-    transform: translate(2px, 2px);
+    transform: translate(0, 1px);
+    box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.2);
   }
 `;
+
+export default ButtonAuth;

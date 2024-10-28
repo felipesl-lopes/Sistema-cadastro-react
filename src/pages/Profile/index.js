@@ -1,14 +1,17 @@
 /* eslint-disable jsx-a11y/alt-text */
+import { zodResolver } from "@hookform/resolvers/zod";
 import { doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import React, { useContext, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
 import { FiSettings, FiUpload } from "react-icons/fi";
 import { toast } from "react-toastify";
+import { z } from "zod";
 import avatar from "../../assets/avatar.png";
-import { ButtonAuth } from "../../components/ButtonAuth";
+import ButtonAuth from "../../components/ButtonAuth";
 import { ComponentHeader } from "../../components/ComponentHeader";
 import { ComponentTitle } from "../../components/ComponentTitle";
-import { InputAuth } from "../../components/InputAuth";
+import InputAuth from "../../components/InputAuth";
 import { AuthContext } from "../../contexts/auth";
 import { db, storage } from "../../services/firebaseConnection";
 import { GlobalContainer, GlobalForm } from "../../styles/globalStyles";
@@ -27,8 +30,32 @@ export const Profile = () => {
     useContext(AuthContext);
   const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
   const [imageAvatar, setImageAvatar] = useState(null);
-  const [name, setName] = useState(user && user.name);
-  const [email, setEmail] = useState(user && user.email);
+
+  const schema = z.object({
+    name: z.string().min(1, "Campo obrigatório"),
+    email: z
+      .string()
+      .min(1, "Campo obrigatório")
+      .email("Digite um e-mail válido"),
+  });
+
+  const defaultValues = useMemo(
+    () => ({
+      name: user.name,
+      email: user.email,
+    }),
+    [user.name, user.email]
+  );
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isDirty },
+  } = useForm({
+    resolver: zodResolver(schema),
+    defaultValues,
+  });
 
   const handleFile = (e) => {
     if (e.target.files[0]) {
@@ -44,49 +71,57 @@ export const Profile = () => {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmitForm = async (data) => {
     setLoadingAuth(true);
-    if (imageAvatar === null && name !== "") {
+    if (imageAvatar === null && (await data.name) !== "") {
       const docRef = doc(db, "users", user.uid);
       await updateDoc(docRef, {
-        name: name,
+        name: await data.name,
       })
         .then(async () => {
-          let data = {
+          let dataList = {
             ...user,
-            name: name,
+            name: await data.name,
           };
-          setUser(await data);
-          await storageUser(data);
+          setUser(await dataList);
+          await storageUser(dataList);
           toast.success("Dados alterados com sucesso!");
+        })
+        .catch(() => {
+          alert("Erro ao tentar salvar as alterações.");
         })
         .finally(() => {
           setLoadingAuth(false);
         });
-    } else if (name !== "" && imageAvatar !== null) {
-      await handleUpload();
+    } else if ((await data.name) !== "" && imageAvatar !== null) {
+      await handleUpload(await data);
     }
+    reset({
+      name: data.name,
+      email: data.email,
+    });
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async (data) => {
     const uploadRef = ref(storage, `image/${user.uid}/${imageAvatar.name}`);
 
     await uploadBytes(uploadRef, imageAvatar)
-      .then((data) => {
-        getDownloadURL(data.ref).then(async (downloadUrl) => {
+      .then((docUser) => {
+        getDownloadURL(docUser.ref).then(async (downloadUrl) => {
           const docRef = doc(db, "users", user.uid);
           await updateDoc(docRef, {
             avatarUrl: downloadUrl,
-            name: name,
+            name: await data.name,
           }).then(async () => {
-            let data = {
+            let dataList = {
               ...user,
               avatarUrl: downloadUrl,
-              name: name,
+              name: await data.name,
             };
-            setUser(await data);
-            await storageUser(data);
+            setUser(await dataList);
+            await storageUser(dataList);
             toast.success("Dados alterados com sucesso!");
+            setImageAvatar(null);
           });
         });
       })
@@ -108,17 +143,14 @@ export const Profile = () => {
         </ComponentTitle>
 
         <ProfileContainer>
-          <GlobalForm
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSubmit();
-            }}
-          >
+          <GlobalForm onSubmit={handleSubmit(handleSubmitForm)}>
             <LabelAvatar>
               <Span>
                 <FiUpload color="#fff" size={25} />
               </Span>
-              <InputImg type="file" accept="image/*" onChange={handleFile} />{" "}
+
+              <InputImg type="file" accept="image/*" onChange={handleFile} />
+
               <br />
               <ImgProfile
                 src={avatarUrl ? avatarUrl : avatar}
@@ -131,17 +163,30 @@ export const Profile = () => {
             <br />
 
             <LabelInput>Nome</LabelInput>
-            <InputAuth onChange={setName} value={name} />
+
+            <InputAuth
+              type="text"
+              id="name"
+              required={true}
+              register={register}
+              errors={errors.name && errors.name?.message}
+            />
 
             <LabelInput>E-mail</LabelInput>
             <InputAuth
-              value={email}
-              onChange={setEmail}
-              type="email"
               disabled={true}
+              placeholder="E-mail"
+              type="email"
+              id="email"
+              required={true}
+              register={register}
+              errors={errors.email && errors.email?.message}
             />
 
-            <ButtonAuth title={"Salvar"} />
+            <ButtonAuth
+              title={"Salvar"}
+              disable={!isDirty && imageAvatar === null}
+            />
           </GlobalForm>
         </ProfileContainer>
       </GlobalContainer>
