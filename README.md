@@ -33,30 +33,49 @@ Este projeto é uma aplicação web de sistema de chamados desenvolvida em React
 
 
 
-## Instalação e Execução:
+## Instalação:
 
-1- Clone o Repositório
+1- Clone o repositório
 
 Primeiro, clone o repositório do projeto para sua máquina local:
 ```
 git clone https://github.com/felipesl-lopes/Sistema-cadastro-react.git
 ```
 
+2- Navegue até o diretório do projeto
+```
+cd Sistema-cadastro-react
+```
 
+3- Instale as dependências
+
+Use o npm para instalar todas as dependências listadas no package.json:
+```
+npm install
+```
 
 <br/>
 
 
 
-
-
-
-
-
 ## Configuração do Firebase:
 
+1- Crie um projeto no Firebase.
 
+2- Obtenha as credenciais de configuração do Firebase (chave da API, domínio, ID do projeto, etc.).
 
+3- Crie um arquivo <strong>firebaseConfig.js</strong> na pasta src e adicione suas credenciais:
+```
+// src/firebaseConfig.js
+export const firebaseConfig = {
+  apiKey: "sua-api-key",
+  authDomain: "seu-auth-domain",
+  projectId: "seu-project-id",
+  storageBucket: "seu-storage-bucket",
+  messagingSenderId: "seu-messaging-sender-id",
+  appId: "seu-app-id"
+};
+```
 
 <br/>
 
@@ -77,11 +96,14 @@ git clone https://github.com/felipesl-lopes/Sistema-cadastro-react.git
 
 ## Executando:
 
+1- Inicie o servidor de desenvolvimento com o seguinte comando:
 ```
 npm start
 ```
 
+2- Acesse a Aplicação:
 
+Após o comando ser executado com sucesso, acesse a aplicação em [http://localhost:3000](http://localhost:3000).
 
 
 
