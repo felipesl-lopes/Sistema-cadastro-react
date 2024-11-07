@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# Sistema-cadastro-react
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sistema de cadastro de chamados
 
-## Available Scripts
+## Descrição:
 
-In the project directory, you can run:
+Este projeto é uma aplicação web de sistema de chamados desenvolvida em React e Firebase. Voltada para o gerenciamento de solicitações de atendimento, a aplicação permite que usuários registrem e acompanhem chamados. Além de um painel de chamados, o sistema conta com funcionalidades de personalização de perfil e cadastro de clientes, sendo uma solução prática para organização e rastreamento de atendimentos.
 
-### `npm start`
+<br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Demonstração:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Tecnologias e Ferramentas:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- <strong>firebase:</strong> Usado para autenticação, banco de dados em tempo real, e armazenamento de dados.
+- <strong>react e react-dom:</strong> Bibliotecas principais para a construção da interface e manipulação do DOM em React.
+- <strong>react-router-dom:</strong> Gerencia a navegação entre as páginas da aplicação.
+- <strong>react-hook-form:</strong> Facilita o gerenciamento de formulários.
+- <strong>yup e zod:</strong> Bibliotecas para validação de dados.
+- <strong>styled-components:</strong> Permite criar componentes estilizados com CSS-in-JS.
+- <strong>react-toastify:</strong> Utilizada para exibir notificações, como alertas de sucesso ou erro.
+- <strong>react-modal:</strong> Usada para criar modais.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Instalação e Execução:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1- Clone o Repositório
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Primeiro, clone o repositório do projeto para sua máquina local:
+```
+git clone https://github.com/felipesl-lopes/Sistema-cadastro-react.git
+```
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+<br/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+## Configuração do Firebase:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+<br/>
+
+
+
+## Funcionalidades:
+
+- <strong>Autenticação de Usuário: </strong> Registro e login de usuários com autenticação usando Firebase.
+- <strong>Painel de Chamados: </strong> Exibe uma lista de chamados, com detalhes como nome do cliente, status, assunto e data do chamado. Permite acompanhar e gerenciar todos os chamados.
+- <strong>Gerenciamento de Chamados: </strong> Opção de criação de novos chamados, permitindo ao usuário registrar solicitações de atendimento. Funcionalidade para editar chamados existentes, facilitando atualizações ou correções.
+- <strong>Perfil do Usuário: </strong> Permite ao usuário personalizar seu perfil, incluindo a opção de alterar a foto e o nome de exibição.
+- <strong>Cadastro de Clientes: </strong> Tela dedicada para cadastrar novos clientes, organizando informações e tornando o gerenciamento de atendimentos mais prático.
+- <strong>Notificações e Feedback: </strong> Sistema de notificações com react-toastify para feedback em ações importantes, como criação, edição e exclusão de chamados ou clientes.
+
+<br/>
+
+
+
+## Executando:
+
+```
+npm start
+```
+
+
+
+
+
