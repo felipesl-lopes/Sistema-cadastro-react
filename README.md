@@ -2,6 +2,12 @@
 
 Sistema de cadastro de chamados
 
+<img src="https://github.com/user-attachments/assets/ead5e89a-4cf1-475c-8af3-478603ebe696" height=400 alt="Captura de tela 2024-11-08 144045 1" />
+
+<img src="https://github.com/user-attachments/assets/8f7615e1-fe7a-4cca-90db-bf563b222425" height=440 alt="iMockup - Google Pixel 8 Pro" />
+
+
+
 ## Descrição:
 
 Este projeto é uma aplicação web de sistema de chamados desenvolvida em React e Firebase. Voltada para o gerenciamento de solicitações de atendimento, a aplicação permite que usuários registrem e acompanhem chamados. Além de um painel de chamados, o sistema conta com funcionalidades de personalização de perfil e cadastro de clientes, sendo uma solução prática para organização e rastreamento de atendimentos.
