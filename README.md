@@ -67,6 +67,12 @@ npm install
 3- Crie um arquivo <strong>firebaseConfig.js</strong> na pasta src e adicione suas credenciais:
 ```
 // src/firebaseConfig.js
+
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+
 export const firebaseConfig = {
   apiKey: "sua-api-key",
   authDomain: "seu-auth-domain",
@@ -75,6 +81,13 @@ export const firebaseConfig = {
   messagingSenderId: "seu-messaging-sender-id",
   appId: "seu-app-id"
 };
+
+const firebaseApp = initializeApp(firebaseConfig);
+
+export const auth = getAuth(firebaseApp);
+export const db = getFirestore(firebaseApp);
+export const storage = getStorage(firebaseApp);
+
 ```
 
 <br/>
