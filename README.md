@@ -12,6 +12,26 @@ Este projeto é uma aplicação web de sistema de chamados desenvolvida em React
 
 ## Demonstração:
 
+Navegando entre as telas de Autenticação:
+
+https://github.com/user-attachments/assets/4d0e1ba8-60f4-471a-a027-7b4973fa00d9
+
+
+Realizando login:
+
+https://github.com/user-attachments/assets/6f461c2c-d112-4f2f-b778-acb08dd85aa0
+
+
+Cadastrando um chamado:
+
+https://github.com/user-attachments/assets/d0cf39f4-c295-43c7-870e-d348db715b95
+
+
+Navegando entre telas:
+
+https://github.com/user-attachments/assets/bca71dfe-ed61-444d-ad6e-7ce10d46f706
+
+
 
 
 <br/>
