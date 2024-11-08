@@ -11,7 +11,7 @@ import avatar from "../../assets/avatar.png";
 import ButtonAuth from "../../components/ButtonAuth";
 import { ComponentHeader } from "../../components/ComponentHeader";
 import { ComponentTitle } from "../../components/ComponentTitle";
-import InputAuth from "../../components/InputAuth";
+import { InputAuth } from "../../components/InputAuth";
 import { AuthContext } from "../../contexts/auth";
 import { db, storage } from "../../services/firebaseConnection";
 import { GlobalContainer, GlobalForm } from "../../styles/globalStyles";

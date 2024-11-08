@@ -8,7 +8,7 @@ import { z } from "zod";
 import ButtonAuth from "../../components/ButtonAuth";
 import { ComponentHeader } from "../../components/ComponentHeader";
 import { ComponentTitle } from "../../components/ComponentTitle";
-import InputAuth from "../../components/InputAuth";
+import { InputAuth } from "../../components/InputAuth";
 import { AuthContext } from "../../contexts/auth";
 import { db } from "../../services/firebaseConnection";
 import {

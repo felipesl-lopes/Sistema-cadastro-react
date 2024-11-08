@@ -3,16 +3,16 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import ButtonAuth from "../../../components/ButtonAuth";
-import InputAuth from "../../../components/InputAuth";
+import { InputAuth, InputAuthPassword } from "../../../components/InputAuth";
+import { TextNav } from "../../../components/TextNav";
 import { AuthContext } from "../../../contexts/auth";
 import {
-  ButtonLink,
   Container,
   Form,
   Login,
   LoginArea,
   Logo,
-  Title,
+  Title
 } from "../styled";
 
 export const SignUp = () => {
@@ -73,9 +73,8 @@ export const SignUp = () => {
             errors={errors.email && errors.email?.message}
           />
 
-          <InputAuth
+          <InputAuthPassword
             placeholder="Senha"
-            type="password"
             id="password"
             required={true}
             register={register}
@@ -86,7 +85,11 @@ export const SignUp = () => {
           <ButtonAuth title={"Cadastrar"} />
         </Form>
 
-        <ButtonLink to={"/"}>Já possui uma conta? Faça o login</ButtonLink>
+        <TextNav
+          title={"Já possui uma conta?"}
+          titleLink={"Faça o login"}
+          link={"/"}
+        />
       </Login>
     </Container>
   );

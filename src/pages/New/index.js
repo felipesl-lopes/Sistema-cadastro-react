@@ -240,6 +240,7 @@ export const New = () => {
 
               <GlobalLabel>Complemento</GlobalLabel>
               <TextArea
+              color="orange"
                 type="text"
                 placeholder="Descreva o problema (opcional)."
                 value={complement}

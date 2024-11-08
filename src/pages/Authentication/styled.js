@@ -45,7 +45,7 @@ export const Title = styled.h1`
   color: #181c2e;
 `;
 
-export const ButtonLink = styled(Link)`
-  margin: 1rem 0;
-  color: #000;
+export const TextRecover = styled(Link)`
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
 `;

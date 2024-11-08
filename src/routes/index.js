@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { RecoverPassword } from "../pages/Authentication/RecoverPassword";
 import { SignIn } from "../pages/Authentication/SignIn";
 import { SignUp } from "../pages/Authentication/SignUp";
 import { Customers } from "../pages/Customers";
@@ -12,6 +13,7 @@ export const RoutesApp = () => {
     <Routes>
       <Route path="/" element={<SignIn />} />
       <Route path="/register" element={<SignUp />} />
+      <Route path="/recoverPassword" element={<RecoverPassword />} />
 
       <Route
         path="/dashboard"

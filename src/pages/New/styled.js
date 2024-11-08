@@ -41,6 +41,10 @@ export const TextArea = styled.textarea`
   font-size: 15px;
   background-color: #fff;
   max-width: 600px;
+
+  &::placeholder {
+    color: #aaa;
+  }
 `;
 
 export const InputLoading = styled.input`

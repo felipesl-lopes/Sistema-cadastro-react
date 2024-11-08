@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import React, { createContext, useEffect, useState } from "react";
@@ -99,6 +100,20 @@ export const AuthProvider = ({ children }) => {
       });
   };
 
+  const resetPassword = async (email) => {
+    await sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert(
+          "E-mail de redefinição de senha enviado! Verifique sua caixa de entrada."
+        );
+      })
+      .catch(() => {
+        alert(
+          "Erro ao enviar o e-mail de redefinição de senha. Verifique o e-mail digitado."
+        );
+      });
+  };
+
   const logout = async () => {
     await signOut(auth)
       .then(() => {})
@@ -123,6 +138,7 @@ export const AuthProvider = ({ children }) => {
         loading,
         logout,
         storageUser,
+        resetPassword,
       }}
     >
       {children}

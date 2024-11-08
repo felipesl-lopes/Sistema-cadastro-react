@@ -3,8 +3,7 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import ButtonAuth from "../../../components/ButtonAuth";
-import { InputAuth, InputAuthPassword } from "../../../components/InputAuth";
-import { TextNav } from "../../../components/TextNav";
+import { InputAuth } from "../../../components/InputAuth";
 import { AuthContext } from "../../../contexts/auth";
 import {
   Container,
@@ -16,18 +15,14 @@ import {
   Title,
 } from "../styled";
 
-export const SignIn = () => {
-  const { signIn } = useContext(AuthContext);
+export const RecoverPassword = () => {
+  const { resetPassword } = useContext(AuthContext);
 
   const schema = z.object({
     email: z
       .string()
       .min(1, "Campo obrigatório")
       .email("Digite um e-mail válido"),
-    password: z
-      .string()
-      .min(1, "Campo obrigatório")
-      .min(6, "Mínimo de 6 dígitos"),
   });
 
   const {
@@ -39,7 +34,7 @@ export const SignIn = () => {
   });
 
   const handleSubmitForm = async (data) => {
-    await signIn(data.email, data.password);
+    await resetPassword(data.email);
   };
 
   return (
@@ -53,7 +48,7 @@ export const SignIn = () => {
         </LoginArea>
 
         <Form onSubmit={handleSubmit(handleSubmitForm)}>
-          <Title>Entrar</Title>
+          <Title>Recuperar senha</Title>
 
           <InputAuth
             placeholder="E-mail"
@@ -64,30 +59,14 @@ export const SignIn = () => {
             errors={errors.email && errors.email?.message}
           />
 
-          <InputAuthPassword
-            placeholder="Senha"
-            id="password"
-            required={true}
-            register={register}
-            minLength={6}
-            errors={errors.password && errors.password?.message}
-          />
-
-          <TextRecover
-            style={{ alignSelf: "flex-start" }}
-            to={"/recoverPassword"}
-          >
-            Esqueceu sua senha?
-          </TextRecover>
-
-          <ButtonAuth title={"Acessar"} />
+          <ButtonAuth title={"Recuperar senha"} />
         </Form>
 
-        <TextNav
-          title={"Não possui conta?"}
-          titleLink={"Crie uma conta"}
-          link={"/register"}
-        />
+        <br />
+        <TextRecover to={"/"} style={{ textAlign: "center" }}>
+          Entrar
+        </TextRecover>
+        <br />
       </Login>
     </Container>
   );
