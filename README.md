@@ -1,6 +1,6 @@
 # Sistema-cadastro-react
 
-Sistema de cadastro de chamados
+Call registration system
 
 <img src="https://github.com/user-attachments/assets/ead5e89a-4cf1-475c-8af3-478603ebe696" height=400 alt="Captura de tela 2024-11-08 144045 1" />
 
@@ -8,32 +8,33 @@ Sistema de cadastro de chamados
 
 
 
-## Descrição:
+## Description:
 
-Este projeto é uma aplicação web de sistema de chamados desenvolvida em React e Firebase. Voltada para o gerenciamento de solicitações de atendimento, a aplicação permite que usuários registrem e acompanhem chamados. Além de um painel de chamados, o sistema conta com funcionalidades de personalização de perfil e cadastro de clientes, sendo uma solução prática para organização e rastreamento de atendimentos.
+This project is a ticketing system web application developed in React and Firebase. Aimed at managing service requests, the application allows users to register and track calls. In addition to a ticket panel, the system has profile customization and customer registration features, making it a practical solution for organizing and tracking services.
+
 
 <br/>
 
 
 
-## Demonstração:
+## Demo:
 
-Navegando entre as telas de Autenticação:
+Navigating between Authentication screens:
 
 https://github.com/user-attachments/assets/4d0e1ba8-60f4-471a-a027-7b4973fa00d9
 
 
-Realizando login:
+Logging in:
 
 https://github.com/user-attachments/assets/6f461c2c-d112-4f2f-b778-acb08dd85aa0
 
 
-Cadastrando um chamado:
+Registering a ticket:
 
 https://github.com/user-attachments/assets/d0cf39f4-c295-43c7-870e-d348db715b95
 
 
-Navegando entre telas:
+Navigating between screens:
 
 https://github.com/user-attachments/assets/bca71dfe-ed61-444d-ad6e-7ce10d46f706
 
@@ -44,38 +45,38 @@ https://github.com/user-attachments/assets/bca71dfe-ed61-444d-ad6e-7ce10d46f706
 
 
 
-## Tecnologias e Ferramentas:
+## Technologies and Tools:
 
-- <strong>firebase:</strong> Usado para autenticação, banco de dados em tempo real, e armazenamento de dados.
-- <strong>react e react-dom:</strong> Bibliotecas principais para a construção da interface e manipulação do DOM em React.
-- <strong>react-router-dom:</strong> Gerencia a navegação entre as páginas da aplicação.
-- <strong>react-hook-form:</strong> Facilita o gerenciamento de formulários.
-- <strong>yup e zod:</strong> Bibliotecas para validação de dados.
-- <strong>styled-components:</strong> Permite criar componentes estilizados com CSS-in-JS.
-- <strong>react-toastify:</strong> Utilizada para exibir notificações, como alertas de sucesso ou erro.
-- <strong>react-modal:</strong> Usada para criar modais.
+- <strong>firebase:</strong> Used for authentication, real-time database, and data storage.
+- <strong>react e react-dom:</strong> Main libraries for building the interface and manipulating the DOM in React.
+- <strong>react-router-dom:</strong> Manages navigation between application pages.
+- <strong>react-hook-form:</strong> Makes form management easier.
+- <strong>yup e zod:</strong> Libraries for data validation.
+- <strong>styled-components:</strong> Allows you to create styled components with CSS-in-JS.
+- <strong>react-toastify:</strong> Used to display notifications, such as success or error alerts.
+- <strong>react-modal:</strong> Used to create modals.
 
 <br/>
 
 
 
-## Instalação:
+## Installation:
 
-1- Clone o repositório
+1- Clone the repository
 
-Primeiro, clone o repositório do projeto para sua máquina local:
+First, clone the project repository to your local machine:
 ```
 git clone https://github.com/felipesl-lopes/Sistema-cadastro-react.git
 ```
 
-2- Navegue até o diretório do projeto
+2- Navigate to the project directory
 ```
 cd Sistema-cadastro-react
 ```
 
-3- Instale as dependências
+3- Install dependencies
 
-Use o npm para instalar todas as dependências listadas no package.json:
+Use npm to install all dependencies listed in package.json:
 ```
 npm install
 ```
@@ -84,13 +85,13 @@ npm install
 
 
 
-## Configuração do Firebase:
+## Firebase Configuration:
 
-1- Crie um projeto no Firebase.
+1- Create a project in Firebase.
 
-2- Obtenha as credenciais de configuração do Firebase (chave da API, domínio, ID do projeto, etc.).
+2- Get your Firebase configuration credentials (API key, domain, project ID, etc.).
 
-3- Crie um arquivo <strong>firebaseConfig.js</strong> na pasta src e adicione suas credenciais:
+3- Create a <strong>firebaseConfig.js</strong> file in the src folder and add your credentials:
 ```
 // src/firebaseConfig.js
 
@@ -120,29 +121,29 @@ export const storage = getStorage(firebaseApp);
 
 
 
-## Funcionalidades:
+## Features:
 
-- <strong>Autenticação de Usuário: </strong> Registro e login de usuários com autenticação usando Firebase.
-- <strong>Painel de Chamados: </strong> Exibe uma lista de chamados, com detalhes como nome do cliente, status, assunto e data do chamado. Permite acompanhar e gerenciar todos os chamados.
-- <strong>Gerenciamento de Chamados: </strong> Opção de criação de novos chamados, permitindo ao usuário registrar solicitações de atendimento. Funcionalidade para editar chamados existentes, facilitando atualizações ou correções.
-- <strong>Perfil do Usuário: </strong> Permite ao usuário personalizar seu perfil, incluindo a opção de alterar a foto e o nome de exibição.
-- <strong>Cadastro de Clientes: </strong> Tela dedicada para cadastrar novos clientes, organizando informações e tornando o gerenciamento de atendimentos mais prático.
-- <strong>Notificações e Feedback: </strong> Sistema de notificações com react-toastify para feedback em ações importantes, como criação, edição e exclusão de chamados ou clientes.
+- <strong>User Authentication: </strong> User registration and login with authentication using Firebase.
+- <strong>Call Panel: </strong> Displays a list of calls, with details such as customer name, status, subject and date of the call. Allows you to track and manage all tickets.
+- <strong>Ticket Management: </strong> Option to create new tickets, allowing the user to register service requests. Functionality to edit existing tickets, facilitating updates or corrections.
+- <strong>User Profile: </strong> Allows the user to customize their profile, including the option to change the photo and display name.
+- <strong>Customer Registration: </strong> Dedicated screen for registering new customers, organizing information and making service management more practical.
+- <strong>Notifications and Feedback: </strong> Notification system with react-toastify for feedback on important actions, such as creating, editing and deleting tickets or customers.
 
 <br/>
 
 
 
-## Executando:
+## Running:
 
-1- Inicie o servidor de desenvolvimento com o seguinte comando:
+1- Start the development server with the following command:
 ```
 npm start
 ```
 
-2- Acesse a Aplicação:
+2- Access the Application:
 
-Após o comando ser executado com sucesso, acesse a aplicação em [http://localhost:3000](http://localhost:3000).
+After the command is executed successfully, access the application at [http://localhost:3000](http://localhost:3000).
 
 
 
