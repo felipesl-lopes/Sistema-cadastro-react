@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { CheckEmail } from "../pages/Authentication/CheckEmail";
 import { RecoverPassword } from "../pages/Authentication/RecoverPassword";
 import { SignIn } from "../pages/Authentication/SignIn";
 import { SignUp } from "../pages/Authentication/SignUp";
@@ -14,6 +15,7 @@ export const RoutesApp = () => {
       <Route path="/" element={<SignIn />} />
       <Route path="/register" element={<SignUp />} />
       <Route path="/recoverPassword" element={<RecoverPassword />} />
+      <Route path="/checkEmail" element={<CheckEmail />} />
 
       <Route
         path="/dashboard"

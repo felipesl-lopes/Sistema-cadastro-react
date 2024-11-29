@@ -1,8 +1,9 @@
 import {
   createUserWithEmailAndPassword,
+  sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
-  sendPasswordResetEmail,
 } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import React, { createContext, useEffect, useState } from "react";
@@ -37,6 +38,13 @@ export const AuthProvider = ({ children }) => {
     setLoadingAuth(true);
     await signInWithEmailAndPassword(auth, email, password)
       .then(async (value) => {
+        if (!value.user.emailVerified) {
+          alert(
+            "Você precisa verificar o seu e-mail para poder fazer o login."
+          );
+          return;
+        }
+
         const docRef = doc(db, "users", value.user.uid);
         await getDoc(docRef).then(async (data) => {
           let list = {
@@ -77,6 +85,8 @@ export const AuthProvider = ({ children }) => {
     setLoadingAuth(true);
     await createUserWithEmailAndPassword(auth, email, password)
       .then(async (value) => {
+        await sendEmailVerification(value.user);
+
         await setDoc(doc(db, "users", value.user.uid), {
           name: name,
           avatarUrl: null,
@@ -89,7 +99,7 @@ export const AuthProvider = ({ children }) => {
           };
           setUser(data);
           await storageUser(data);
-          navigate("/dashboard");
+          navigate(`/checkEmail?email=${encodeURIComponent(value.user.email)}`);
         });
       })
       .catch(() => {
@@ -103,9 +113,7 @@ export const AuthProvider = ({ children }) => {
   const resetPassword = async (email) => {
     await sendPasswordResetEmail(auth, email)
       .then(() => {
-        alert(
-          "E-mail de redefinição de senha enviado! Verifique sua caixa de entrada."
-        );
+        navigate(`/checkEmail?email=${encodeURIComponent(email)}&resetPassword=true`);
       })
       .catch(() => {
         alert(

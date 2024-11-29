@@ -9,12 +9,13 @@ import { AuthContext } from "../../../contexts/auth";
 import {
   Container,
   Form,
-  Login,
-  LoginArea,
+  ContainerForm,
+  LogoArea,
   Logo,
   TextRecover,
   Title,
 } from "../styled";
+import { Spacer } from "../../../components/Spacer";
 
 export const SignIn = () => {
   const { signIn } = useContext(AuthContext);
@@ -27,7 +28,15 @@ export const SignIn = () => {
     password: z
       .string()
       .min(1, "Campo obrigatório")
-      .min(6, "Mínimo de 6 dígitos"),
+      .min(8, "A senha deve ter no mínimo 8 caracteres")
+      .max(20, "A senha deve ter no máximo 20 caracteres")
+      .regex(/[A-Z]/, "A senha deve conter pelo menos uma letra maiúscula")
+      .regex(/[a-z]/, "A senha deve conter pelo menos uma letra minúscula")
+      .regex(/\d/, "A senha deve conter pelo menos um número")
+      .regex(
+        /[@$!%*?&#]/,
+        "A senha deve conter pelo menos um caractere especial (@, $, !, %, *, ?, &, #)"
+      ),
   });
 
   const {
@@ -44,16 +53,18 @@ export const SignIn = () => {
 
   return (
     <Container>
-      <Login>
-        <LoginArea>
+      <ContainerForm>
+        <LogoArea>
           <Logo
             src={require("../../../assets/logo.png")}
             alt="Logo do sistema de chamados"
           />
-        </LoginArea>
+        </LogoArea>
 
         <Form onSubmit={handleSubmit(handleSubmitForm)}>
           <Title>Entrar</Title>
+
+          <Spacer spacing={4} />
 
           <InputAuth
             placeholder="E-mail"
@@ -73,6 +84,8 @@ export const SignIn = () => {
             errors={errors.password && errors.password?.message}
           />
 
+          <Spacer spacing={1} />
+
           <TextRecover
             style={{ alignSelf: "flex-start" }}
             to={"/recoverPassword"}
@@ -80,15 +93,19 @@ export const SignIn = () => {
             Esqueceu sua senha?
           </TextRecover>
 
-          <ButtonAuth title={"Acessar"} />
-        </Form>
+          <Spacer spacing={6} />
 
-        <TextNav
-          title={"Não possui conta?"}
-          titleLink={"Crie uma conta"}
-          link={"/register"}
-        />
-      </Login>
+          <ButtonAuth title={"Acessar"} />
+
+          <Spacer spacing={4} />
+
+          <TextNav
+            title={"Não possui conta?"}
+            titleLink={"Crie uma conta"}
+            link={"/register"}
+          />
+        </Form>
+      </ContainerForm>
     </Container>
   );
 };

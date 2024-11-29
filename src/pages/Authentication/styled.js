@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  height: 100%;
+  height: 100vh;
   justify-content: center;
   align-items: center;
   background-color: #121212;
   padding: 0 12px;
 `;
 
-export const Login = styled.div`
+export const ContainerForm = styled.div`
   background-color: #eaeaec;
   width: 600px;
   display: flex;
@@ -19,33 +19,38 @@ export const Login = styled.div`
   flex-direction: column;
 `;
 
-export const LoginArea = styled.div`
+export const LogoArea = styled.div`
   background-color: #181c2e;
   width: 100%;
   justify-content: center;
   display: flex;
-`;
-
-export const Logo = styled.img`
-  width: 170px;
-  height: auto;
   padding: 20px;
 `;
 
-export const Form = styled.form`
-  margin-top: 1.5rem;
-  width: 90%;
-  display: flex;
-  flex-direction: column;
+export const Logo = styled.img`
+  width: 50%;
+  height: auto;
+  max-width: 130px;
 `;
 
-export const Title = styled.h1`
+export const Form = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+`;
+
+export const Title = styled.h2`
   text-align: center;
-  margin-bottom: 1rem;
   color: #181c2e;
 `;
 
 export const TextRecover = styled(Link)`
   font-size: 0.9rem;
-  margin-bottom: 1rem;
+  margin-left: 2px;
+  align-self: center;
+
+  &:active{
+    color: #4646e0;
+  }
 `;

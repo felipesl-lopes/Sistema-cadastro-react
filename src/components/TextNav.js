@@ -14,7 +14,6 @@ export const TextNav = ({ title, titleLink, link }) => {
 const Container = styled.div`
   display: flex;
   align-self: center;
-  margin: 1rem 0;
 
   @media screen and (max-width: 340px) {
     display: inline-block;
@@ -31,5 +30,9 @@ const TextButton = styled(Link)`
     margin: 0;
     display: inline-flex;
     padding-top: 4px;
+  }
+
+  &:active {
+    color: #4646e0;
   }
 `;

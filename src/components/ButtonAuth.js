@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/auth";
+import { SpinnerLoading } from "./SpinnerLoading";
 
 const ButtonAuth = ({ title, disable, ...children }) => {
   const { loadingAuth } = useContext(AuthContext);
@@ -18,13 +19,12 @@ const ButtonAuth = ({ title, disable, ...children }) => {
       type="submit"
       {...children}
     >
-      {loadingAuth ? "Carregando..." : title}
+      {loadingAuth ? <SpinnerLoading size={16} /> : title}
     </Button>
   );
 };
 
 const Button = styled.button`
-  margin-top: 1rem;
   height: 36px;
   border-radius: 4px;
   border: 0;

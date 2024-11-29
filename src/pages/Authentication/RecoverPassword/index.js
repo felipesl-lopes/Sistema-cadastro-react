@@ -4,13 +4,14 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import ButtonAuth from "../../../components/ButtonAuth";
 import { InputAuth } from "../../../components/InputAuth";
+import { Spacer } from "../../../components/Spacer";
 import { AuthContext } from "../../../contexts/auth";
 import {
   Container,
+  ContainerForm,
   Form,
-  Login,
-  LoginArea,
   Logo,
+  LogoArea,
   TextRecover,
   Title,
 } from "../styled";
@@ -39,16 +40,18 @@ export const RecoverPassword = () => {
 
   return (
     <Container>
-      <Login>
-        <LoginArea>
+      <ContainerForm>
+        <LogoArea>
           <Logo
             src={require("../../../assets/logo.png")}
             alt="Logo do sistema de chamados"
           />
-        </LoginArea>
+        </LogoArea>
 
         <Form onSubmit={handleSubmit(handleSubmitForm)}>
-          <Title>Recuperar senha</Title>
+          <Title>Recuperação de senha</Title>
+
+          <Spacer spacing={4} />
 
           <InputAuth
             placeholder="E-mail"
@@ -59,15 +62,17 @@ export const RecoverPassword = () => {
             errors={errors.email && errors.email?.message}
           />
 
-          <ButtonAuth title={"Recuperar senha"} />
-        </Form>
+          <Spacer spacing={5} />
 
-        <br />
-        <TextRecover to={"/"} style={{ textAlign: "center" }}>
-          Entrar
-        </TextRecover>
-        <br />
-      </Login>
+          <ButtonAuth title={"Enviar"} />
+
+          <Spacer spacing={4} />
+
+          <TextRecover to={"/"} style={{ textAlign: "center" }}>
+            Login
+          </TextRecover>
+        </Form>
+      </ContainerForm>
     </Container>
   );
 };

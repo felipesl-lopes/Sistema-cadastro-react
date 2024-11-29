@@ -9,6 +9,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { FiEdit2, FiMessageSquare, FiPlus, FiSearch } from "react-icons/fi";
 import { ComponentHeader } from "../../components/ComponentHeader";
+import { ComponentModal } from "../../components/ComponentModal";
 import { ComponentTitle } from "../../components/ComponentTitle";
 import { formatedDate } from "../../functions/formatedDate";
 import { returnColor } from "../../functions/returnColor";
@@ -22,7 +23,6 @@ import {
   Status,
   Table,
 } from "./styled";
-import { ComponentModal } from "../../components/ComponentModal";
 
 export const Dashboard = () => {
   const [called, setCalled] = useState([]);

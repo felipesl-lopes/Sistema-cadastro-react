@@ -14,15 +14,16 @@ export const InputAuth = ({
 }) => {
   return (
     <Container>
-      <Input
-        style={{ border: errors ? "2px solid #ff4d4f" : 0 }}
-        placeholder={placeholder}
-        type={type}
-        id={id}
-        {...register(id, { required: required, minLength: minLength })}
-        {...children}
-      />
-      {errors && <Error>{errors}</Error>}
+      <ContainerInput style={{ border: errors && "solid 2px #ff3030" }}>
+        <Input
+          placeholder={placeholder}
+          type={type}
+          id={id}
+          {...register(id, { required: required, minLength: minLength })}
+          {...children}
+        />
+      </ContainerInput>
+      <Error>{errors || "\u00A0"}</Error>
     </Container>
   );
 };
@@ -44,9 +45,8 @@ export const InputAuthPassword = ({
 
   return (
     <Container>
-      <>
+      <ContainerInput style={{ border: errors && "solid 2px #ff3030" }}>
         <Input
-          style={{ border: errors ? "2px solid #ff4d4f" : 0 }}
           placeholder={placeholder}
           type={visible ? "text" : "password"}
           id={id}
@@ -56,48 +56,66 @@ export const InputAuthPassword = ({
         <StyledIcon onClick={handleVisible}>
           {visible ? <FiEye /> : <FiEyeOff />}
         </StyledIcon>
-      </>
-      {errors && <Error>{errors}</Error>}
+      </ContainerInput>
+      <Error>{errors || "\u00A0"}</Error>
     </Container>
   );
 };
 
 const Container = styled.div`
-  position: relative;
-  margin-bottom: 1.3rem;
+  width: 100%;
   max-width: 600px;
+  margin-bottom: 4px;
+`;
+
+const ContainerInput = styled.div`
+  border-radius: 4px;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  border: 2px transparent solid;
+  margin-bottom: 2px;
+
+  &:focus-within {
+    border: 2px solid #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+  }
 `;
 
 const Input = styled.input`
-  height: 36px;
-  border-radius: 4px;
+  display: flex;
   width: 100%;
-  padding: 10px;
-  padding-right: 40px;
-  font-size: 15px;
-  background-color: #fff;
-  margin-bottom: 2px;
-`;
+  border: none;
+  outline: none;
+  padding: 8px;
+  background-color: transparent;
+  appearance: none;
 
-const Error = styled.p`
-  font-size: 0.8em;
-  color: #ff4d4f;
-  margin-left: 2px;
-  position: absolute;
+  &:-webkit-autofill {
+    background-color: transparent !important;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  }
 `;
 
 const StyledIcon = styled.div`
-  position: absolute;
-  right: 4px;
-  top: 50%;
-  transform: translateY(-50%);
   cursor: pointer;
-  color: #666;
-  font-size: 18px;
-  pointer-events: auto;
+  padding: 0 12px;
 
   svg {
     display: flex;
-    margin: 6px;
+    bottom: auto;
+    color: #777;
+  }
+`;
+
+const Error = styled.p`
+  font-size: 13px;
+  color: #ff4d4f;
+  margin-left: 2px;
+
+  @media (max-width: 300px) {
+    font-size: 11px;
   }
 `;
